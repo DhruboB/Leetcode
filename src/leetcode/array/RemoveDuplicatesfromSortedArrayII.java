@@ -10,7 +10,7 @@ public class RemoveDuplicatesfromSortedArrayII {
 
         RemoveDuplicatesfromSortedArrayII sln = new RemoveDuplicatesfromSortedArrayII();
         System.out.println(Arrays.toString(arr));
-        System.out.println(sln.removeDuplicates(arr));
+        System.out.println(sln.removeDuplicatesTest(arr));
         System.out.println(Arrays.toString(arr));
     }
 
@@ -32,5 +32,21 @@ public class RemoveDuplicatesfromSortedArrayII {
             }
         }
         return deDupLength;
+    }
+
+    // Reference implementation with by manipulating input array
+    public int removeDuplicatesTest(int[] nums) {
+        int len = nums.length;
+        if(len < 2) return len;
+        int index = 2;
+        int curr = 1;
+        while(++curr < len ){
+            if(nums[curr] == nums[index-1] && nums[index - 1] == nums[index - 2]){
+                continue;
+            }else{
+                nums[index++] = nums[curr];
+            }
+        }
+        return curr;
     }
 }
